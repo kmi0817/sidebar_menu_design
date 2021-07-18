@@ -128,6 +128,26 @@ export const show_index = (req, res) => {
     });
 }
 
+export const show_ftp_download = (req, res) => {
+    const body = `
+    template: \`
+    <h2>FTP download XX</h2>
+    <ul>
+        <li>자바스크립트는 FTP를 지원하지 않는다.</li>
+        <li>클라이언트 사이드에서 FTP 작업하려면 아마도 Flash나 자바 애플렛이 필요할 것이다.</li>
+        <li>따라서 서버 사이드 혹은 더 robust한 클라이언트 사이드 언어를 사용하여 remote server에 접근해야 한다.</li>
+        <li>Node JS에서 FTP에 접근하려면, 직접 FTP 내용을 모두 설정해야 한다. (참고2)</li>
+    </ul>
+    <ol>
+        <li>참고1: <a href='https://stackoverflow.com/questions/4594798/download-file-from-ftp-via-javascript'>Download file from FTP via Javascript</a></li>
+        <li>참고2: <a href='https://pythonq.com/so/javascript/1224549'>javascript = Node.js는 FTP에 연결하고 파일을 다운로드합니다</a></li>
+    </ol>
+    \`
+    `;
+    const template = SIDEBAR_BODY('', body, '');
+    res.send(template);
+}
+
 export const show_tree = (req, res) => {
     const template = SIDEBAR_BODY();
     res.send(template);

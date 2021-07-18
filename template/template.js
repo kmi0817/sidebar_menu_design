@@ -47,6 +47,7 @@ export function SIDEBAR_BODY(css='', body='', func='') {
                                     value: 'home',
                                     selected: true
                                 },
+                                { id: 'ftp_download', value: 'FTP download'},
                                 { id: 'tree', value: 'Tree' },
                                 {
                                     id: 'chart', value: 'Chart',
