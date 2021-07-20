@@ -1,4 +1,4 @@
-export function SIDEBAR_BODY(css='', body='', func='') {
+export function SIDEBAR_BODY(body='', func='') {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -15,15 +15,66 @@ export function SIDEBAR_BODY(css='', body='', func='') {
         <script src="//cdn.webix.com/edge/webix.js" type="text/javascript"></script>
     
         <style>
-            body {
-                line-height: 25px;
-            }
-    
-            .sidebar_menu {
-                background-color: aliceblue;
-            }
+        /* === whole site === */
 
-            ${css}
+        body {
+          line-height: 25px;
+        }
+        
+        .sidebar_menu {
+          background-color: aliceblue;
+        }
+        
+        /* === INDEX PART START === */
+        
+        .container {
+          padding-top: 20px;
+          text-align: center;
+          /* table을 container 상자 중앙에 오도록 설정 */
+        }
+        .table {
+          padding: 15px;
+          border: 1px solid #475466;
+          border-radius: 20px;
+          width: 95%;
+          display: inline-block; /* text-align 영향 받으려면 lnline이어야 함 */
+          text-align: left; /* table 내 text는 왼쪽 정렬로 설정 */
+        }
+        .table:hover {
+          box-shadow: 5px 5px 10px #a9a9a9;
+        }
+        .table .index_title {
+          font-size: 1.5em;
+          font-weight: 600;
+        }
+        .table td {
+          padding: 5px;
+        }
+        .table .index_description {
+          font-size: 1.1em;
+        }
+        .buttons {
+          text-align: center;
+          width: 130px;
+        }
+        .buttons .index_btn {
+          font-size: 1.2em;
+          font-weight: 600;
+          border-radius: 20px;
+          width: 80px;
+          margin: 10px;
+          padding: 7px;
+        }
+        .buttons .index_btn:hover {
+          color: gray;
+        }
+        
+        .index_research {
+          font-size: 2em;
+          font-weight: 600;
+        }
+        /* === INDEX PART END === */
+
         </style>
     </head>
     
@@ -84,12 +135,107 @@ export function SIDEBAR_BODY(css='', body='', func='') {
                         location.href = '/' + id;
                     }
                 });
-
-                ${func}
             });
+            ${func}
         </script>
     </body>
     
     </html> 
+    `;
+}
+
+export function INDEX_BODY(containers='') {
+    return `
+    rows: [
+        {
+            cols: [
+                {
+                    template: 'Here are contaienrs',
+                    borderless: true,
+                    css: 'index_research'
+                },
+                {
+                    align: 'right',
+                    body: {
+                        view: 'toolbar',
+                        borderless: true,
+                        css: 'webix_transparent webix_button',
+                        elements: [
+                            {view: 'button', label: 'btn1', autowidth: true},
+                            {view: 'button', label: 'btn2', autowidth: true}
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            ${containers}
+        },
+        {
+            template: 'footer - Park Kyungmi',
+            autoheight: true,
+        }
+    ]
+    `;
+}
+
+export function CHART_BODY(myData='') {
+    return `
+    rows: [
+        {   /* webix doc: https://docs.webix.com/api__link__ui.view_animate_config.html */
+            view: 'tabbar', id: 'tabbar',
+            selected: 'line_and_spline',
+            multiview: true,
+            options: [
+               { value: 'Line and Spline', id: 'line_and_spline'},
+               { value: 'Bar', id: 'bar'},
+               { value: 'Pie', id: 'pie'},
+               { value: 'Area and SplineArea', id: 'area_and_splineArea'},
+               { value: 'Radar', id: 'radar'}
+            ]
+        },
+        {
+            animate: {
+                type: 'slide',
+                direction: 'top'
+            },
+            fitBiggest: true,
+            cells: [
+                {
+                    id: 'line_and_spline',
+                    template: 'line and spline'
+                },
+                {
+                    id: 'bar',
+                    view: 'chart',
+                    type: 'bar',
+                    value: '#accident#',
+                    autoConfig: true,
+                    data: ${myData},
+                    alpha: 0.8,
+                    radius: 0,
+                    border: true,
+                    xAxis: {template: "#year#"},
+                    yAxis: {
+                        start: 200000,
+                        end: 230000,
+                        step: 1000,
+                    }
+                },
+                {
+                    id: 'pie',
+                    template: 'pie'
+                },
+                {
+                    id: 'area_and_splineArea',
+                    template: 'area and splineArea'
+                },
+                {
+                    id: 'radar',
+                    template: 'radar'
+                }
+            ]
+        }
+    ]
     `;
 }

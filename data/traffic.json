@@ -1,0 +1,42 @@
+[
+    {
+      "year": 2016,
+      "accident": 220917,
+      "death": 4292,
+      "serious_injury": 82463,
+      "slight_injury": 226283,
+      "injury_report": 22974
+    },
+    {
+      "year": 2017,
+      "accident": 216335,
+      "death": 4185,
+      "serious_injury": 78212,
+      "slight_injury": 223200,
+      "injury_report": 21417
+    },
+    {
+      "year": 2018,
+      "accident": 217148,
+      "death": 3781,
+      "serious_injury": 74258,
+      "slight_injury": 227511,
+      "injury_report": 21268
+    },
+    {
+      "year": 2019,
+      "accident": 229600,
+      "death": 3349,
+      "serious_injury": 72306,
+      "slight_injury": 245524,
+      "injury_report": 23882
+    },
+    {
+      "year": 2020,
+      "accident": 209654,
+      "death": 3081,
+      "serious_injury": 60564,
+      "slight_injury": 226036,
+      "injury_report": 19594
+    }
+   ]
